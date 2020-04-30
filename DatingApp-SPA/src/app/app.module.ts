@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { FileUploadModule } from 'ng2-file-upload';
 
 export function tokenGetter(){
    return localStorage.getItem('token');
@@ -34,6 +35,8 @@ import { MemberListResolver } from './_resolves/member-list.resolver';
 import { MemberEditComponent } from './member/member-list/member-edit/member-edit.component';
 import { MemberEditResolver } from './_resolves/member-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+import { PhotoEditorComponent } from './member/member-list/photo-editor/photo-editor.component';
+
 
 export class CustomHammerConfig extends HammerGestureConfig  {
    overrides = {
@@ -41,6 +44,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
        rotate: { enable: false }
    };
 }
+
 
 @NgModule({
    declarations: [
@@ -53,7 +57,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MemberCardComponent,
       ListsComponent,
       MemberDetailComponent,
-      MemberEditComponent
+      MemberEditComponent,
+      PhotoEditorComponent
    ],
    imports: [
       BrowserModule,
@@ -64,6 +69,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       BsDropdownModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       NgxGalleryModule,
+      FileUploadModule,
       JwtModule.forRoot({
          config: {
             tokenGetter: tokenGetter,
