@@ -10,6 +10,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import {TimeAgoPipe} from 'time-ago-pipe';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 export function tokenGetter(){
    return localStorage.getItem('token');
@@ -39,6 +41,7 @@ import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { PhotoEditorComponent } from './member/member-list/photo-editor/photo-editor.component';
 
 
+
 export class CustomHammerConfig extends HammerGestureConfig  {
    overrides = {
        pinch: { enable: false },
@@ -46,6 +49,11 @@ export class CustomHammerConfig extends HammerGestureConfig  {
    };
 }
 
+// @Pipe({
+//    name: 'timeAgo',
+//    pure: false
+// })
+// export class TimeAgoExtendsPipe extends TimeAgoPipe {}
 
 @NgModule({
    declarations: [
@@ -59,7 +67,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       ListsComponent,
       MemberDetailComponent,
       MemberEditComponent,
-      PhotoEditorComponent
+      PhotoEditorComponent,
+      // TimeAgoExtendsPipe,
    ],
    imports: [
       BrowserModule,
@@ -68,6 +77,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       FormsModule,
       ReactiveFormsModule,
       BrowserAnimationsModule,
+      PaginationModule.forRoot(),
       TabsModule.forRoot(),
       BsDatepickerModule.forRoot(),
       BsDropdownModule.forRoot(),

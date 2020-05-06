@@ -9,12 +9,16 @@ import { catchError } from 'rxjs/operators';
 // פיתרון כדי שלא נצטרך לשים ? ליד המשתמש בקומפוננטת פרטי חבר user?.knowAs
 @Injectable()
 export class MemberListResolver implements Resolve<User[]>{
-    constructor(private userService: UserService, private router: Router, private alertify: AlertifyService){}
+    pageNumber = 1;
+    pageSize = 5;
+
+    constructor(private userService: UserService, private router: Router,
+                private alertify: AlertifyService){}
 
 
     resolve(route: ActivatedRouteSnapshot): Observable<User[]> {
         // do subscribe itself
-        return this.userService.getUsers().pipe(
+        return this.userService.getUsers(this.pageNumber, this.pageSize).pipe(
             catchError( error => {
                 this.alertify.error('Problem retriving data');
                 this.router.navigate(['/home']);
