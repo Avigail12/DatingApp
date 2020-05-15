@@ -1,0 +1,43 @@
+.card {
+    border: none;
+}
+.chat {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.chat li {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+.rounded-circle {
+    height: 50px;
+    width: 50px;
+}
+.text-small {
+    font-size: 0.9rem;
+}
+.card-body {
+    overflow-y: scroll;
+    height: 400px;
+}
+img_cont {
+  position: relative;
+  float: right;
+  height: 70px;
+  width: 70px;
+}
+chat-img {
+  position: relative;
+}
+.bg-light {
+  margin-left: 50%;
+}
+/* .text-success {
+  margin-left: 75%;
+} */
+/* .text-danger{
+  display: block;
+  position: relative;
+  margin-left: 75%;
+} */

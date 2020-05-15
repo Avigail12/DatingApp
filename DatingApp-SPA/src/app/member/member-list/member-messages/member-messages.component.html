@@ -1,0 +1,71 @@
+<div class="card">
+  <div class="card-body">
+
+    <div *ngIf="messages?.length === 0">
+      <p>No messages yet... Say hi by using the messages box below</p>
+    </div>
+
+    <ul class="chat">
+      <li *ngFor="let message of messages.reverse()">
+        <!-- to me -->
+        <!-- media ml-auto w-50 mb-3 -->
+        <div class="" *ngIf="message.senderId == recipientId">
+          <span class="chat-img float-right">
+            <img src="{{message.senderPhotoUrl}}" alt="{{message.senderKnowAs}}" class="rounded-circle">
+          </span>
+          <div  class="chat-body">
+            <div class="header">
+              <strong class="primary-font mb-5 float-right">{{message.senderKnowAs}}</strong>
+                <small class="text-muted">
+                  <span class="fa fa-clock-o small text-muted mt-1 mr-1 float-right">{{message.messageSend | date:'shortTime' }}</span>
+                 <!-- <span class="fa fa-clock-o">{{message.messageSend | timeAgo}}</span> -->
+               </small>
+              </div>
+            <div class="bg-light rounded py-3 px-3 mt-2">
+              <p class="text-small mt-2 mb-0 text-muted">{{message.content}}</p>
+            </div>
+          </div>
+        </div>
+        <!--to them -->
+        <!-- d-flex bd-highlight -->
+        <!-- chat-img float-left img_cont-->
+        <div class="media w-50 mb-3" *ngIf="message.senderId != recipientId">
+          <span class="chat-img float-left">
+            <img src="{{message.senderPhotoUrl}}" alt="{{message.senderKnowAs}}" class="rounded-circle">
+          </span>
+          <div class="chat-body">
+            <div class="media-body">
+              <small class="text-muted">
+                <!-- <span class="fa fa-clock-o">{{message.messageSend | timeAgo}}</span> -->
+                <span class="fa fa-clock-o small text-muted ml-1">{{message.messageSend | date:'shortTime'}}</span>
+                <span *ngIf="message.isRead" class="text-success mr-2 mt-1 float-right">(Read {{message.dateRead | date:'shortTime'}})</span>
+                <span *ngIf="!message.isRead" class="text-danger mr-2 mt-1 float-right">(Unread)</span>
+                <!-- <span *ngIf="message.isRead" class="text-success">(Reag {{message.dateRead | timeAgo}})</span> -->
+                
+              </small>
+              <strong class="primary-font float-left">{{message.senderKnowAs}}</strong>         
+            </div>
+            <div class="bg-primary rounded py-2 px-3 mb-2">
+              <p class="text-small mb-0 text-white">{{message.content}}</p>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="card-footer">
+    <form #messageForm="ngForm" (ngSubmit)="messageForm.valid && sendMessage()">
+      <div class="input-group">
+        <input type="text" placeholder="Type a message" [(ngModel)]="newMessage.content" name="content"
+         required class="form-control input-sm rounded-0 border-0 py-4">
+        <div class="input-group-append">
+          <button id="button-addon2" type="submit" class="btn btn-link" [disabled]="!messageForm.valid"> 
+            <i class="fa fa-paper-plane"></i></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+

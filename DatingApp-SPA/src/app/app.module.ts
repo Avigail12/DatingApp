@@ -41,6 +41,8 @@ import { MemberEditResolver } from './_resolves/member-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { PhotoEditorComponent } from './member/member-list/photo-editor/photo-editor.component';
 import { ListsResolver } from './_resolves/lists.resolver';
+import { MessagesResolver } from './_resolves/messages.resolver';
+import { MemberMessagesComponent } from './member/member-list/member-messages/member-messages.component';
 
 
 
@@ -71,6 +73,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MemberEditComponent,
       PhotoEditorComponent,
       // TimeAgoExtendsPipe,
+      MemberMessagesComponent
    ],
    imports: [
       BrowserModule,
@@ -106,6 +109,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       MemberEditResolver,
       PreventUnsavedChanges,
       ListsResolver,
+      MessagesResolver,
       { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig } 
    ],
    bootstrap: [
