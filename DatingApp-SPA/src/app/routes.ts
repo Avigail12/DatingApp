@@ -31,3 +31,9 @@ export const appRoutes: Routes = [
     // אם שום דבר לא מתאים בניווט ילך לדף הבית
     { path: '**', redirectTo: '', pathMatch: 'full'},
 ];
+// angular.json
+// "builder": "@angular-devkit/build-angular:browser",
+//           "options": {
+//             "outputPath": "dist/DatingApp-SPA"
+
+//  "buildOptimizer": true
