@@ -34,14 +34,20 @@ namespace DatingApp.API
 
         public void ConfigureDevelopmentServices(IServiceCollection services)
         {
-             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+             services.AddDbContext<DataContext>(x => {
+                 x.UseLazyLoadingProxies();
+                 x.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
+             });
 
              ConfigureServices(services);
         }
 
         public void ConfigureProductionServices(IServiceCollection services)
         {
-             services.AddDbContext<DataContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+             services.AddDbContext<DataContext>(x => {
+                 x.UseLazyLoadingProxies();
+                 x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+             });
 
              ConfigureServices(services);
         }
@@ -71,6 +77,7 @@ namespace DatingApp.API
                     };
 
                 });
+            services.AddScoped<LogUserActivity>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -97,10 +104,12 @@ namespace DatingApp.API
                     });
                 });
                 // app.UseHttpsRedirection();
+                app.UseHsts();
             }
            
 
             app.UseRouting();
+
 
             app.UseCors(x =>x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthentication();
@@ -120,4 +129,7 @@ namespace DatingApp.API
         }
     }
 }
-//  
+//Integrated Security=true  User Id=appuser; Password=password
+// "ConnectionStrings":{
+//   "DefaultConnection":"Server=(local)\\sqlexpress; Database=datingapp; User Id=appuser; Password=Avigail12"
+// },

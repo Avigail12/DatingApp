@@ -17,7 +17,7 @@
             <div class="header">
               <strong class="primary-font mb-5 float-right">{{message.senderKnowAs}}</strong>
                 <small class="text-muted">
-                  <span class="fa fa-clock-o small text-muted mt-1 mr-1 float-right">{{message.messageSend | date:'shortTime' }}</span>
+                  <span class="fa fa-clock-o small text-muted mt-1 mr-1 float-right">{{message.messageSend | timeago }}</span>
                  <!-- <span class="fa fa-clock-o">{{message.messageSend | timeAgo}}</span> -->
                </small>
               </div>
@@ -37,7 +37,7 @@
             <div class="media-body">
               <small class="text-muted">
                 <!-- <span class="fa fa-clock-o">{{message.messageSend | timeAgo}}</span> -->
-                <span class="fa fa-clock-o small text-muted ml-1">{{message.messageSend | date:'shortTime'}}</span>
+                <span class="fa fa-clock-o small text-muted ml-1">{{message.messageSend | timeago}}</span>
                 <span *ngIf="message.isRead" class="text-success mr-2 mt-1 float-right">(Read {{message.dateRead | date:'shortTime'}})</span>
                 <span *ngIf="!message.isRead" class="text-danger mr-2 mt-1 float-right">(Unread)</span>
                 <!-- <span *ngIf="message.isRead" class="text-success">(Reag {{message.dateRead | timeAgo}})</span> -->

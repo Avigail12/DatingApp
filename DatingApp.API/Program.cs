@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using DatingApp.API.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,7 @@ namespace DatingApp.API
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {            
             var host = CreateHostBuilder(args).Build();
             using (var scope=host.Services.CreateScope())
@@ -19,7 +20,7 @@ namespace DatingApp.API
                 try
                 {
                     var contex=services.GetRequiredService<DataContext>();
-                    contex.Database.Migrate();
+                    await contex.Database.MigrateAsync();
                     Seed.SeedUsers(contex);
                 }
                 catch (Exception ex)
